@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Терракотовый в фирменном стиле - демо</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1f2b2a;--stone:#d8d3ca;--paper:#f6f4ef;--sage:#8a9a86;--terra:#b9573a;--acc:var(--terra);--line:#1f2b2a22}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.55 Manrope,system-ui,sans-serif;overflow-x:hidden}
+.before{--acc:var(--sage)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.logo{display:flex;align-items:center;gap:10px;font:700 18px Fraunces;letter-spacing:.02em;text-transform:none}
+.logo svg{width:30px;height:30px}
+h1{font:700 clamp(34px,5.6vw,72px)/1 Fraunces,serif;letter-spacing:-.02em;margin:56px 0 18px;max-width:880px}
+h1 em{font-style:italic;color:var(--acc);transition:color .6s}
+.lead{max-width:620px;font-size:18px;color:#3d4847}
+h2{font:700 clamp(26px,3.4vw,40px)/1.1 Fraunces;margin-bottom:10px;letter-spacing:-.01em}
+.sub{color:#56605f;margin-bottom:30px;max-width:640px}
+section{padding:70px 0;border-top:1px solid var(--line)}
+/* controls */
+.ctrl{display:flex;flex-wrap:wrap;gap:22px;margin:34px 0 26px;align-items:center}
+.sw{display:flex;gap:8px}
+.sw button{width:44px;height:44px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform .25s,border-color .25s;outline-offset:3px}
+.sw button.on{border-color:var(--ink);transform:scale(1.08)}
+.tg{display:inline-flex;border:1px solid var(--ink);border-radius:30px;overflow:hidden}
+.tg button{background:none;border:0;padding:10px 18px;font:500 14px Manrope;cursor:pointer;color:var(--ink);transition:background .25s,color .25s}
+.tg button.on{background:var(--ink);color:var(--paper)}
+.code{font-size:13px;color:#56605f;min-width:260px}
+.code b{color:var(--ink)}
+/* palette bar */
+.bar{display:flex;height:120px;border-radius:4px;overflow:hidden}
+.bar div{position:relative;padding:12px;font-size:12px;display:flex;flex-direction:column;justify-content:flex-end;transition:flex-grow 1s cubic-bezier(.2,.8,.2,1),background .6s}
+.bar span{font-weight:700;font-size:13px}
+.b1{background:var(--ink);color:var(--paper);flex-grow:60}
+.b2{background:var(--stone);flex-grow:25}
+.b3{background:var(--acc);color:#fff;flex-grow:10}
+.b4{background:var(--sage);color:#fff;flex-grow:5}
+.before .b3{flex-grow:0;padding:0}
+.before .b3 *{display:none}
+.bar.grow .b3{animation:pour 1.4s .3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pour{from{flex-grow:0}}
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rule{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff}
+.rule .pv{height:150px;display:grid;place-items:center;position:relative}
+.rule p{padding:14px;font-size:14px}
+.rule b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.yes b{color:#3e7a4f}.no b{color:#b0362a}
+.no .pv::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - 1.5px),#b0362a 50%,transparent calc(50% + 1.5px))}
+/* carriers */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:22px;position:relative}
+.card h3{font:500 12px Manrope;letter-spacing:.08em;text-transform:uppercase;color:#56605f;margin-bottom:16px}
+.c-biz{grid-column:span 5}.c-slide{grid-column:span 7}.c-kp{grid-column:span 4}.c-merch{grid-column:span 8}.c-pos{grid-column:span 12}
+/* business card flip */
+.flip{perspective:1000px;height:200px;cursor:pointer}
+.flip .in{position:relative;width:100%;max-width:340px;height:200px;margin:0 auto;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.9,.3,1)}
+.flip.on .in,.flip:hover .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:6px;padding:20px;box-shadow:0 14px 30px -14px #1f2b2a66;overflow:hidden}
+.front{background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:space-between}
+.back{background:var(--paper);transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line)}
+.front .pt{position:absolute;right:-20px;top:-20px;width:170px;opacity:.9}
+.nm{font:700 20px Fraunces}.ps{font-size:12px;color:var(--acc);transition:color .6s;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.back small{font-size:12px;line-height:1.7}
+.stripe{height:8px;background:var(--acc);border-radius:2px;transition:background .6s;width:60px}
+.hint{font-size:12px;color:#8a908f;text-align:center;margin-top:10px}
+/* slide */
+.slide{aspect-ratio:16/9;background:var(--ink);border-radius:4px;color:var(--paper);padding:5%;display:grid;grid-template-columns:1.1fr 1fr;gap:5%;overflow:hidden;position:relative}
+.slide h4{font:700 clamp(18px,2.4vw,30px)/1.05 Fraunces}
+.slide .k{font-size:clamp(10px,1vw,12px);opacity:.7;margin-top:8px}
+.kpi{align-self:end;display:grid;gap:8px}
+.kpi div{display:flex;align-items:center;gap:10px;font-size:clamp(10px,1vw,13px)}
+.kpi i{display:block;height:10px;background:var(--acc);border-radius:2px;transition:width 1.2s cubic-bezier(.2,.8,.2,1),background .6s;width:0}
+.slide.vis .kpi i{width:var(--w)}
+.slide .num{font:700 clamp(26px,4vw,52px) Fraunces;color:var(--acc);transition:color .6s}
+/* kp */
+.kp{aspect-ratio:1/1.414;background:var(--paper);border:1px solid var(--line);padding:9%;display:flex;flex-direction:column;gap:7%;font-size:10px;box-shadow:0 14px 30px -18px #1f2b2a55}
+.kp .hd{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--acc);padding-bottom:6%;transition:border-color .6s}
+.kp .ln{height:5px;background:#1f2b2a1f;border-radius:2px}
+.kp .tot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:var(--paper);padding:6%;font-weight:700}
+.kp .tot b{color:var(--acc);font:700 16px Fraunces;transition:color .6s}
+/* merch */
+.merch{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:end}
+.merch figure{text-align:center;font-size:12px;color:#56605f}
+.merch svg{width:100%;height:150px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.merch figure:hover svg{transform:translateY(-8px) rotate(-2deg)}
+.fa{fill:var(--acc);transition:fill .6s}.fi{fill:var(--ink)}.fs{fill:var(--stone)}.fp{fill:var(--paper)}
+/* price tags */
+.tags{display:flex;gap:16px;flex-wrap:wrap}
+.tag{width:200px;border-radius:4px;overflow:hidden;border:1px solid var(--line);background:#fff;transform-origin:top center;animation:swing 3.4s ease-in-out infinite}
+.tag:nth-child(2){animation-delay:-1.1s}.tag:nth-child(3){animation-delay:-2.2s}
+@keyframes swing{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+.tag .t{background:var(--ink);color:var(--paper);padding:10px 12px;font-size:12px}
+.tag .p{padding:12px;font:700 30px Fraunces;display:flex;justify-content:space-between;align-items:baseline}
+.tag .p s{font:400 13px Manrope;color:#8a908f}
+.tag.sale .p{color:var(--acc);transition:color .6s}
+.tag .f{height:6px;background:var(--acc);transition:background .6s}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+footer{padding:36px 0 60px;border-top:1px solid var(--line);font-size:13px;color:#56605f}
+@media(max-width:900px){.rules{grid-template-columns:1fr 1fr}.grid>*{grid-column:span 12!important}.merch{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+ <symbol id="mark" viewBox="0 0 40 40"><path d="M6 34V20a14 14 0 0 1 28 0v14" fill="none" stroke="currentColor" stroke-width="4"/><path d="M14 34V21a6 6 0 0 1 12 0v13" fill="none" stroke="currentColor" stroke-width="4"/></symbol>
+ <pattern id="arcs" width="40" height="22" patternUnits="userSpaceOnUse"><path d="M0 22a20 20 0 0 1 40 0" fill="none" stroke="#f6f4ef" stroke-opacity=".18" stroke-width="2"/></pattern>
+</defs></svg>
+<div class="wrap">
+<header><span class="logo"><svg style="color:var(--ink)"><use href="#mark"/></svg>Аркада</span><span>Демо · доработка брендбука</span></header>
+<h1>Новый цвет в стиле, который <em>уже работает</em></h1>
+<p class="lead">Пример на условном бренде: логотип, знак и паттерн не трогаем - добавляем терракотовый, прописываем правила и раскатываем на носители. Переключите «до / после» и оттенок - все макеты ниже перестроятся.</p>
+<div class="ctrl">
+ <div class="tg" id="ba"><button data-b="1">До</button><button class="on" data-b="0">После</button></div>
+ <div class="sw" id="sw">
+  <button class="on" style="background:#b9573a" data-c="#b9573a" data-t="Терракота 1 · HEX #B9573A · CMYK 15 75 85 5 · ≈ Pantone 7591 C" aria-label="Оттенок 1"></button>
+  <button style="background:#c4704f" data-c="#c4704f" data-t="Терракота 2 · HEX #C4704F · CMYK 10 65 75 0 · ≈ Pantone 7585 C" aria-label="Оттенок 2"></button>
+  <button style="background:#9e4a33" data-c="#9e4a33" data-t="Терракота 3 · HEX #9E4A33 · CMYK 20 80 90 15 · ≈ Pantone 7592 C" aria-label="Оттенок 3"></button>
+ </div>
+ <div class="code" id="code"></div>
+</div>
+<div class="bar grow" id="bar">
+ <div class="b1"><span>Графит</span>60% - фон, текст</div>
+ <div class="b2"><span>Камень</span>25%</div>
+ <div class="b3"><span>Терракота</span>10% - акцент</div>
+ <div class="b4"><span>Шалфей</span>5%</div>
+</div>
+</div>
+
+<section><div class="wrap">
+ <h2 class="reveal">Правила для терракоты</h2>
+ <p class="sub reveal">Один абзац в брендбуке вместо долгих согласований: где цвет усиливает стиль, а где ломает его.</p>
+ <div class="rules reveal">
+  <div class="rule yes"><div class="pv" style="background:var(--ink)"><div style="width:60%;height:14px;background:var(--acc);border-radius:2px"></div></div><p><b>Да</b>Акцентные линии, цифры, кнопки - до 10% площади.</p></div>
+  <div class="rule yes"><div class="pv" style="background:var(--stone)"><svg width="60" height="60" style="color:var(--acc)"><use href="#mark"/></svg></div><p><b>Да</b>Знак терракотой - только на светлом камне или бумаге.</p></div>
+  <div class="rule no"><div class="pv" style="background:var(--acc)"><span style="font:700 22px Fraunces;color:var(--sage)">Аркада</span></div><p><b>Нет</b>Терракота с шалфеем текстом друг на друге - теряется контраст.</p></div>
+  <div class="rule no"><div class="pv" style="background:var(--acc)"></div><p><b>Нет</b>Заливка терракотой на всю площадь: это акцент, а не фон.</p></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <h2 class="reveal">Приоритетные носители</h2>
+ <p class="sub reveal">Визитки, презентация, КП, сувенирка и ценники - одна система, собранная за день.</p>
+ <div class="grid">
+  <div class="card c-biz reveal"><h3>Визитка 90×50</h3>
+   <div class="flip" id="flip"><div class="in">
+    <div class="face front"><svg class="pt" viewBox="0 0 170 170"><rect width="170" height="170" fill="url(#arcs)"/></svg>
+     <svg width="34" height="34" style="color:var(--paper)"><use href="#mark"/></svg>
+     <div><div class="nm">Ирина Соколова</div><div class="ps">Руководитель проектов</div></div></div>
+    <div class="face back"><div class="stripe"></div><small>+7 000 000-00-00<br>info@arkada.example<br>г. Город, ул. Примерная, 1</small><span class="logo" style="font-size:15px"><svg style="color:var(--acc);width:22px;height:22px"><use href="#mark"/></svg>Аркада</span></div>
+   </div></div><p class="hint">наведите или нажмите - оборот</p></div>
+
+  <div class="card c-slide reveal"><h3>Шаблон презентации</h3>
+   <div class="slide" id="slide"><div><h4>Результаты сезона</h4><p class="k">Слайд с цифрами: терракота выделяет главное</p><div class="num">+38%</div></div>
+    <div class="kpi"><div><i style="--w:90%"></i>Проекты</div><div><i style="--w:64%"></i>Клиенты</div><div><i style="--w:42%"></i>Регионы</div></div></div></div>
+
+  <div class="card c-kp reveal"><h3>Коммерческое предложение</h3>
+   <div class="kp"><div class="hd"><span class="logo" style="font-size:12px"><svg style="color:var(--ink);width:16px;height:16px"><use href="#mark"/></svg>Аркада</span><span>КП № 24</span></div>
+    <div style="font:700 15px Fraunces">Предложение для ООО «Пример»</div>
+    <div style="display:grid;gap:6px"><div class="ln"></div><div class="ln" style="width:85%"></div><div class="ln" style="width:70%"></div><div class="ln"></div><div class="ln" style="width:60%"></div></div>
+    <div class="tot">Итого<b>480 000 ₽</b></div></div></div>
+
+  <div class="card c-merch reveal"><h3>Сувенирная продукция</h3>
+   <div class="merch">
+    <figure><svg viewBox="0 0 120 150"><path class="fs" d="M24 30h62v96a10 10 0 0 1-10 10H34a10 10 0 0 1-10-10z"/><path d="M86 52h8a14 14 0 0 1 0 28h-8" fill="none" stroke="#d8d3ca" stroke-width="8"/><rect class="fa" x="24" y="96" width="62" height="10"/><use href="#mark" x="40" y="50" width="30" height="30" style="color:#1f2b2a"/></svg><figcaption>Кружка</figcaption></figure>
+    <figure><svg viewBox="0 0 120 150"><path d="M42 40c0-22 36-22 36 0" fill="none" stroke="#1f2b2a" stroke-width="5"/><rect class="fa" x="20" y="40" width="80" height="100" rx="3"/><use href="#mark" x="44" y="70" width="32" height="32" style="color:#f6f4ef"/></svg><figcaption>Шоппер</figcaption></figure>
+    <figure><svg viewBox="0 0 120 150"><path class="fi" d="M38 22h44l26 22-10 18-12-8v86H34V54l-12 8-10-18z"/><path class="fa" d="M50 22a10 12 0 0 0 20 0z"/><rect class="fa" x="34" y="132" width="52" height="8"/><use href="#mark" x="47" y="56" width="26" height="26" style="color:#f6f4ef"/></svg><figcaption>Футболка</figcaption></figure>
+    <figure><svg viewBox="0 0 120 150"><circle cx="60" cy="34" r="12" fill="none" stroke="#8a908f" stroke-width="4"/><rect class="fi" x="38" y="48" width="44" height="78" rx="22"/><use href="#mark" x="46" y="68" width="28" height="28" style="color:var(--acc)"/></svg><figcaption>Брелок</figcaption></figure>
+   </div></div>
+
+  <div class="card c-pos reveal"><h3>POS · ценники</h3>
+   <div class="tags">
+    <div class="tag"><div class="t">Плитка «Камень», м²</div><div class="p">2 490 ₽</div><div class="f" style="background:var(--stone)"></div></div>
+    <div class="tag sale"><div class="t">Кирпич ручной формовки</div><div class="p">89 ₽ <s>110 ₽</s></div><div class="f"></div></div>
+    <div class="tag"><div class="t">Панель фасадная</div><div class="p">1 150 ₽</div><div class="f" style="background:var(--sage)"></div></div>
+   </div></div>
+ </div>
+</div></section>
+<div class="wrap"><footer>Демо на условном бренде «Аркада». На ваших исходниках и брендбуке - тот же подход: подбор оттенка, правила, макеты к печати и редактируемые исходники.</footer></div>
+<script>
+const r=document.documentElement,code=document.getElementById('code'),bar=document.getElementById('bar');
+function setC(b){r.style.setProperty('--terra',b.dataset.c);code.innerHTML='<b>'+b.dataset.t.split(' · ')[0]+'</b> · '+b.dataset.t.split(' · ').slice(1).join(' · ')}
+document.getElementById('sw').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#sw button').forEach(x=>x.classList.toggle('on',x===b));setC(b);document.body.classList.remove('before');document.querySelectorAll('#ba button').forEach(x=>x.classList.toggle('on',x.dataset.b==='0'))});
+setC(document.querySelector('#sw .on'));
+document.getElementById('ba').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#ba button').forEach(x=>x.classList.toggle('on',x===b));document.body.classList.toggle('before',b.dataset.b==='1');bar.classList.remove('grow')});
+document.getElementById('flip').addEventListener('click',e=>e.currentTarget.classList.toggle('on'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelector('.slide')?.classList.add('vis');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+</script>
+</body>
+</html>
